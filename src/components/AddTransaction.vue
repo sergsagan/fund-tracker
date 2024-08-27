@@ -2,33 +2,33 @@
 import { ref } from 'vue';
 import { useToast } from "vue-toastification";
 
-const text = ref('');
+const category = ref('');
 const amount = ref('');
-const textError = ref(false);
+const categoryError = ref(false);
 const amountError = ref(false);
 const toast = useToast();
 
 const emit = defineEmits(['transactionSubmitted'])
 
 const onSubmit = () => {
-  textError.value = !text.value;
+  categoryError.value = !category.value;
   amountError.value = !amount.value;
 
-  if (!text.value || !amount.value) {
+  if (!category.value || !amount.value) {
     toast.error('Both fields must be filled');
     return;
   }
 
   const transactionData = {
-    text: text.value,
+    category: category.value,
     amount: parseFloat(amount.value)
   }
 
   emit('transactionSubmitted', transactionData);
 
-  text.value = '';
+  category.value = '';
   amount.value = '';
-  textError.value = false;
+  categoryError.value = false;
   amountError.value = false;
 }
 </script>
@@ -37,13 +37,13 @@ const onSubmit = () => {
   <h3>Add new transaction</h3>
   <form id="form" @submit.prevent="onSubmit">
     <div class="form-control">
-      <label for="text">Text</label>
+      <label for="text">Category</label>
       <input
-          v-model="text"
+          v-model="category"
           type="text"
-          id="text"
-          placeholder="Enter text..."
-          :class="{'error': textError}"
+          id="category"
+          placeholder="Enter category..."
+          :class="{'error': categoryError}"
       />
     </div>
     <div class="form-control">
