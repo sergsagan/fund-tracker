@@ -46,7 +46,7 @@
   const handleTransactionSubmitted = (transactionData) => {
     transactions.value.push({
       id: generateUniqueId(),
-      text: transactionData.text,
+      category: transactionData.category,
       amount: transactionData.amount
     });
 
