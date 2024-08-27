@@ -4,11 +4,16 @@ import { useToast } from "vue-toastification";
 
 const text = ref('');
 const amount = ref('');
+const textError = ref(false);
+const amountError = ref(false);
 const toast = useToast();
 
 const emit = defineEmits(['transactionSubmitted'])
 
 const onSubmit = () => {
+  textError.value = !text.value;
+  amountError.value = !amount.value;
+
   if (!text.value || !amount.value) {
     toast.error('Both fields must be filled');
     return;
@@ -23,6 +28,8 @@ const onSubmit = () => {
 
   text.value = '';
   amount.value = '';
+  textError.value = false;
+  amountError.value = false;
 }
 </script>
 
@@ -36,6 +43,7 @@ const onSubmit = () => {
           type="text"
           id="text"
           placeholder="Enter text..."
+          :class="{'error': textError}"
       />
     </div>
     <div class="form-control">
@@ -44,9 +52,10 @@ const onSubmit = () => {
       </label>
       <input
           v-model="amount"
-          type="text"
+          type="number"
           id="amount"
           placeholder="Enter amount..."
+          :class="{'error': amountError}"
       />
     </div>
     <button class="btn">Add transaction</button>
