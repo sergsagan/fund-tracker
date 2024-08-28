@@ -36,7 +36,7 @@ const onSubmit = () => {
 <template>
   <h3>Add new transaction</h3>
   <form id="form" @submit.prevent="onSubmit">
-    <div class="form-control">
+<!--    <div class="form-control">
       <label for="text">Category</label>
       <input
           v-model="category"
@@ -45,6 +45,23 @@ const onSubmit = () => {
           placeholder="Enter category..."
           :class="{'error': categoryError}"
       />
+    </div>-->
+    <div class="form-control">
+      <label for="category">Category</label>
+      <select
+          v-model="category"
+          id="category"
+          :class="{'error': categoryError}"
+      >
+        <option value="" disabled>Select category</option>
+        <option value="salary">Salary</option>
+        <option value="food">Food</option>
+        <option value="payments">Payments</option>
+        <option value="tv">TV</option>
+        <option value="internet">Internet</option>
+        <option value="bonus">Bonus</option>
+        <option value="other">Other</option>
+      </select>
     </div>
     <div class="form-control">
       <label for="amount">

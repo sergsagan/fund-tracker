@@ -77,7 +77,7 @@ label {
   display: inline-block;
   margin: 10px 0;
 }
-
+select,
 input[type='text'],
 input[type='number'] {
   border: 1px solid #dedede;
@@ -87,7 +87,7 @@ input[type='number'] {
   padding: 10px;
   width: 100%;
 }
-
+select.error,
 input.error {
   border: 2px solid #e74c3c;
 }
